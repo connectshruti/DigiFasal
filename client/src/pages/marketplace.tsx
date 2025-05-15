@@ -1,10 +1,11 @@
+import React from 'react';
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Product } from "@/types";
-import { ProductCard } from "@/components/ui/product-card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Product } from "../types";
+import { ProductCard } from "../components/ui/product-card";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Skeleton } from "../components/ui/skeleton";
 import { Filter, Search, X, Leaf, Sprout, Wheat } from "lucide-react";
 import { Helmet } from "react-helmet";
 import {
@@ -13,16 +14,16 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "../components/ui/select";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { Slider } from "@/components/ui/slider";
-import { Badge } from "@/components/ui/badge";
+} from "../components/ui/sheet";
+import { Slider } from "../components/ui/slider";
+import { Badge } from "../components/ui/badge";
 
 export default function Marketplace() {
   const [searchQuery, setSearchQuery] = useState("");

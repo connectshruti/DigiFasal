@@ -1,11 +1,12 @@
-import { ProductCard } from "@/components/ui/product-card";
+import React from 'react';
+import { ProductCard } from "../ui/product-card";
 import { useQuery } from "@tanstack/react-query";
-import { Product } from "@/types";
-import { Button } from "@/components/ui/button";
+import { Product } from "../../types";
+import { Button } from "../ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
-import { Link } from "wouter";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Link } from "react-router-dom";
+import { Skeleton } from "../ui/skeleton";
 
 export default function FeaturedProducts() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
@@ -133,7 +134,7 @@ export default function FeaturedProducts() {
         {/* View More Link */}
         <div className="flex justify-center mt-12">
           <Link 
-            href="/marketplace" 
+            to="/marketplace" 
             className="flex items-center text-green-600 hover:text-green-700 font-medium group transition-colors"
           >
             Browse Full Marketplace

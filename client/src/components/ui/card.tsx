@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cn } from "@/lib/utils"
+import { cn } from "../../lib/utils"
 import { Leaf } from "lucide-react"
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {

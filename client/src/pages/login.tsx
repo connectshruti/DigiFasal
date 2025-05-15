@@ -1,15 +1,17 @@
+import React from 'react';
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link, useLocation } from "wouter";
+import {Link }from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "../hooks/use-toast";
+import { apiRequest } from "../lib/queryClient";
 import { useContext, useState } from "react";
-import { AuthContext } from "@/App";
+import { AuthContext } from "../App";
 import { Helmet } from "react-helmet";
-import { User } from "@/types";
-import { Button } from "@/components/ui/button";
+import { User } from "../types";
+import { Button } from "../components/ui/button";
 import {
   Form,
   FormControl,
@@ -17,10 +19,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
+} from "../components/ui/form";
+import { Input } from "../components/ui/input";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import { Checkbox } from "../components/ui/checkbox";
 import { Leaf, LogIn } from "lucide-react";
 
 const loginSchema = z.object({
@@ -32,7 +34,7 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function Login() {
-  const [_, setLocation] = useLocation();
+const navigate = useNavigate();
   const { toast } = useToast();
   const { setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
@@ -45,19 +47,23 @@ export default function Login() {
       rememberMe: false,
     },
   });
-  
   const loginMutation = useMutation({
     mutationFn: async (data: { username: string; password: string }) => {
-      const response = await apiRequest("POST", "/api/users/login", data);
-      return response.json() as Promise<User>;
+      const res = await apiRequest("POST", `${import.meta.env.VITE_SERVER_PATH}/api/users/login`, data);
+      if (!res.ok) {
+        const errorBody = await res.json();
+        throw new Error(errorBody.message || "Invalid credentials");
+      }
+      return res.json() as Promise<User>;
     },
     onSuccess: (userData) => {
       setUser(userData);
+      localStorage.setItem("user", JSON.stringify(userData));
       toast({
         title: "Login successful!",
         description: `Welcome back, ${userData.fullName}`,
       });
-      setLocation("/dashboard");
+      navigate("/dashboard");
     },
     onError: (error: any) => {
       toast({
@@ -67,7 +73,7 @@ export default function Login() {
       });
     },
   });
-  
+
   const onSubmit = async (data: LoginFormValues) => {
     setLoading(true);
     try {
@@ -79,46 +85,39 @@ export default function Login() {
       setLoading(false);
     }
   };
-  
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
       <Helmet>
         <title>Login | Digi Fasal</title>
         <meta name="description" content="Access your agricultural marketplace account" />
       </Helmet>
-      
+
       <div className="container mx-auto px-4 py-12 flex flex-col items-center justify-center">
         <div className="w-full max-w-md">
-          {/* Nature-themed header */}
+          {/* Header */}
           <div className="flex flex-col items-center mb-8">
             <div className="bg-green-100 p-3 rounded-full mb-4">
               <Leaf className="h-8 w-8 text-green-600" />
             </div>
-            <h1 className="text-3xl font-bold text-green-800 text-center">
-              Digi Fasal
-            </h1>
-            <p className="text-gray-600 mt-2 text-center">
-              Connecting farmers, buyers, and service providers
-            </p>
+            <h1 className="text-3xl font-bold text-green-800 text-center">Digi Fasal</h1>
+            <p className="text-gray-600 mt-2 text-center">Connecting farmers, buyers, and service providers</p>
           </div>
-          
+
           <Card className="border border-green-100 shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="text-center space-y-1">
               <div className="flex justify-center">
                 <LogIn className="h-6 w-6 text-green-600" />
               </div>
-              <CardTitle className="text-2xl font-semibold text-gray-800">
-                Welcome Back
-              </CardTitle>
+              <CardTitle className="text-2xl font-semibold text-gray-800">Welcome Back</CardTitle>
               <CardDescription className="text-gray-600">
                 Sign in to access your account
               </CardDescription>
             </CardHeader>
-            
+
             <CardContent>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                  {/* Username Field */}
                   <FormField
                     control={form.control}
                     name="username"
@@ -126,18 +125,13 @@ export default function Login() {
                       <FormItem>
                         <FormLabel className="text-gray-700">Username</FormLabel>
                         <FormControl>
-                          <Input 
-                            placeholder="Enter your username" 
-                            {...field} 
-                            className="focus:ring-green-500 focus:border-green-500"
-                          />
+                          <Input {...field} placeholder="Enter your username" className="focus:ring-green-500 focus:border-green-500" />
                         </FormControl>
-                        <FormMessage className="text-red-500 text-sm" />
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
-                  
-                  {/* Password Field */}
+
                   <FormField
                     control={form.control}
                     name="password"
@@ -145,19 +139,13 @@ export default function Login() {
                       <FormItem>
                         <FormLabel className="text-gray-700">Password</FormLabel>
                         <FormControl>
-                          <Input 
-                            type="password" 
-                            placeholder="••••••••" 
-                            {...field} 
-                            className="focus:ring-green-500 focus:border-green-500"
-                          />
+                          <Input type="password" {...field} placeholder="••••••••" className="focus:ring-green-500 focus:border-green-500" />
                         </FormControl>
-                        <FormMessage className="text-red-500 text-sm" />
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
-                  
-                  {/* Remember Me & Forgot Password */}
+
                   <div className="flex items-center justify-between">
                     <FormField
                       control={form.control}
@@ -177,16 +165,12 @@ export default function Login() {
                         </FormItem>
                       )}
                     />
-                    
-                    <Link 
-                      href="/forgot-password" 
-                      className="text-sm text-green-600 hover:text-green-700 hover:underline"
-                    >
+
+                    <Link to="/forgot-password" className="text-sm text-green-600 hover:text-green-700 hover:underline">
                       Forgot password?
                     </Link>
                   </div>
-                  
-                  {/* Submit Button */}
+
                   <Button
                     type="submit"
                     className="w-full bg-green-600 hover:bg-green-700 text-white shadow-sm"
@@ -194,9 +178,9 @@ export default function Login() {
                   >
                     {loading ? (
                       <span className="flex items-center gap-2">
-                        <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24" fill="none">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z" />
                         </svg>
                         Signing in...
                       </span>
@@ -207,15 +191,11 @@ export default function Login() {
                       </span>
                     )}
                   </Button>
-                  
-                  {/* Registration Link */}
+
                   <div className="text-center pt-2">
                     <p className="text-sm text-gray-600">
-                      Don't have an account?{" "}
-                      <Link 
-                        href="/register" 
-                        className="font-medium text-green-600 hover:text-green-700 hover:underline"
-                      >
+                      Don’t have an account?{" "}
+                      <Link to="/register" className="font-medium text-green-600 hover:text-green-700 hover:underline">
                         Create one
                       </Link>
                     </p>

@@ -1,4 +1,5 @@
-import { Link } from "wouter";
+import React from 'react';
+import { Link } from "react-router-dom";
 import { Leaf, Facebook, Twitter, Instagram, Youtube, MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
@@ -38,31 +39,31 @@ export default function Footer() {
             <h4 className="font-serif font-semibold text-gray-800 mb-5">Explore</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
+                <Link to="/" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
                   <Leaf className="h-3 w-3 mr-2 text-green-500" />
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/marketplace" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
+                <Link to="/marketplace" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
                   <Leaf className="h-3 w-3 mr-2 text-green-500" />
                   Marketplace
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
+                <Link to="/services" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
                   <Leaf className="h-3 w-3 mr-2 text-green-500" />
                   Services
                 </Link>
               </li>
               <li>
-                <Link href="/#insights" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
+                <Link to="/#insights" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
                   <Leaf className="h-3 w-3 mr-2 text-green-500" />
                   Market Insights
                 </Link>
               </li>
               <li>
-                <Link href="/#about" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
+                <Link to="/#about" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
                   <Leaf className="h-3 w-3 mr-2 text-green-500" />
                   About Us
                 </Link>
@@ -75,25 +76,25 @@ export default function Footer() {
             <h4 className="font-serif font-semibold text-gray-800 mb-5">Resources</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/register?role=farmer" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
+                <Link to="/register?role=farmer" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
                   <Leaf className="h-3 w-3 mr-2 text-green-500" />
                   Farmer Registration
                 </Link>
               </li>
               <li>
-                <Link href="/register?role=buyer" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
+                <Link to="/register?role=buyer" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
                   <Leaf className="h-3 w-3 mr-2 text-green-500" />
                   Buyer Registration
                 </Link>
               </li>
               <li>
-                <Link href="/help" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
+                <Link to="/help" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
                   <Leaf className="h-3 w-3 mr-2 text-green-500" />
                   Help Center
                 </Link>
               </li>
               <li>
-                <Link href="/faqs" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
+                <Link to="/faqs" className="text-gray-600 hover:text-green-600 transition-colors flex items-center">
                   <Leaf className="h-3 w-3 mr-2 text-green-500" />
                   FAQs
                 </Link>
@@ -134,13 +135,13 @@ export default function Footer() {
               &copy; {new Date().getFullYear()} Digi Fasal. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <Link href="/privacy" className="text-gray-500 hover:text-green-600 text-sm transition-colors">
+              <Link to="/privacy" className="text-gray-500 hover:text-green-600 text-sm transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="text-gray-500 hover:text-green-600 text-sm transition-colors">
+              <Link to="/terms" className="text-gray-500 hover:text-green-600 text-sm transition-colors">
                 Terms of Service
               </Link>
-              <Link href="/cookies" className="text-gray-500 hover:text-green-600 text-sm transition-colors">
+              <Link to="/cookies" className="text-gray-500 hover:text-green-600 text-sm transition-colors">
                 Cookie Policy
               </Link>
             </div>

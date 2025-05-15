@@ -1,4 +1,5 @@
-import { Card, CardContent } from "@/components/ui/card";
+import React from 'react';
+import { Card, CardContent } from "../ui/card";
 import { BarChart3, LineChart, TrendingUp, TrendingDown, Sprout } from "lucide-react";
 
 export default function MarketInsights() {

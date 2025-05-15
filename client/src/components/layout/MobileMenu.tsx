@@ -1,7 +1,8 @@
+import React from 'react';
 import { Link, useLocation } from "wouter";
-import { AuthContext } from "@/App";
+import { AuthContext } from "../../App";
 import { useContext } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
 import { X, Leaf } from "lucide-react";
 
 interface MobileMenuProps {

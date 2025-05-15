@@ -1,14 +1,16 @@
-import { ServiceCard } from "@/components/ui/service-card";
+import React from 'react';
+
+import { ServiceCard } from "../ui/service-card";
 import { useQuery } from "@tanstack/react-query";
-import { Service } from "@/types";
-import { useToast } from "@/hooks/use-toast";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Service } from "../../types";
+import { useToast } from "../../hooks/use-toast";
+import { Skeleton } from "../ui/skeleton";
 import { Truck, Tractor, Brain, Leaf } from "lucide-react";
-import { useLocation } from "wouter";
+import { useNavigate } from "react-router-dom";
 
 export default function ServicesSection() {
   const { toast } = useToast();
-  const [_, setLocation] = useLocation();
+const navigate = useNavigate();
   
   const { data: services, isLoading } = useQuery<Service[]>({
     queryKey: ['/api/services'],
@@ -16,7 +18,7 @@ export default function ServicesSection() {
   });
   
   const handleServiceClick = (type: string) => {
-    setLocation(`/services?type=${type}`);
+    navigate(`/services?type=${type}`);
   };
   
   return (
@@ -43,7 +45,7 @@ export default function ServicesSection() {
                 <Skeleton className="h-12 w-full rounded-lg" />
               </div>
             ))
-          ) : (
+          ) : (  
             <>
               <ServiceCard 
                 title="Transportation" 

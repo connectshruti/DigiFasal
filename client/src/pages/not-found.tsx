@@ -1,7 +1,8 @@
-import { Card, CardContent } from "@/components/ui/card";
+import React from 'react';
+import { Card, CardContent } from "../components/ui/card";
 import { AlertCircle, Leaf, Home } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
+import { Button } from "../components/ui/button";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 export default function NotFound() {
@@ -34,7 +35,7 @@ export default function NotFound() {
                 asChild
                 className="w-full bg-green-600 hover:bg-green-700 text-white shadow-sm"
               >
-                <Link href="/">
+                <Link to="/">
                   <Home className="h-4 w-4 mr-2" />
                   Return Home
                 </Link>
@@ -44,7 +45,7 @@ export default function NotFound() {
                 className="w-full border-gray-300 hover:bg-green-50"
                 asChild
               >
-                <Link href="/contact">
+                <Link to="/contact">
                   Report Issue
                 </Link>
               </Button>

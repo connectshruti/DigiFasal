@@ -1,4 +1,5 @@
-import { Button } from "@/components/ui/button";
+import React from 'react';
+import { Button } from "../ui/button";
 import { Apple, Smartphone } from "lucide-react";
 import { FaGooglePlay } from "react-icons/fa";
 

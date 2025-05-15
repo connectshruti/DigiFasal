@@ -73,7 +73,7 @@ if (!fs.existsSync(envPath)) {
             console.log(`2. Create a database named "${dbName}" if it doesn't exist`);
             console.log('3. Run "npm run db:push" to set up the database schema');
             console.log('4. Run "npm run dev" to start the development server');
-            console.log('\nYour Digi Fasal application will be available at http://localhost:5000');
+            console.log(`\nYour Digi Fasal application will be available at ${process.env.SERVER_URL}`);
             
             rl.close();
           });
@@ -87,6 +87,6 @@ if (!fs.existsSync(envPath)) {
   console.log('1. Ensure your PostgreSQL database is running');
   console.log('2. Run "npm run db:push" to set up the database schema');
   console.log('3. Run "npm run dev" to start the development server');
-  console.log('\nYour Digi Fasal application will be available at http://localhost:5000');
+  console.log(`\nYour Digi Fasal application will be available at ${process.env.SERVER_URL}`);
   rl.close();
 }

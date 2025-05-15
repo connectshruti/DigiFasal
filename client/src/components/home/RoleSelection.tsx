@@ -1,4 +1,5 @@
-import { RoleCard } from "@/components/ui/role-card";
+import React from 'react';
+import { RoleCard } from "../ui/role-card";
 import { Tractor, ShoppingBasket, Wrench, Leaf } from "lucide-react";
 
 export default function RoleSelection() {

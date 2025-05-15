@@ -1,17 +1,18 @@
+import React from 'react';
 import { useState, useContext, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { useToast } from "@/hooks/use-toast";
-import { useLocation } from "wouter";
-import { AuthContext, CartContext } from "@/App";
-import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useToast } from "../../hooks/use-toast";
+import { useNavigate } from "react-router-dom";
+import { AuthContext, CartContext } from "../../App";
+import { apiRequest, queryClient } from "../../lib/queryClient";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+} from "./dialog";
+import { Button } from "./button";
 import {
   Form,
   FormControl,
@@ -19,9 +20,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+} from "./form";
+import { Input } from "./input";
+import { Textarea } from "./textarea";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -37,8 +38,8 @@ import {
   Sprout,
   Truck
 } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
+import { Separator } from "./separator";
+import { Badge } from "./badge";
 
 interface CheckoutModalProps {
   open: boolean;
@@ -55,7 +56,7 @@ type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 
 export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
   const { toast } = useToast();
-  const [_, setLocation] = useLocation();
+const navigate = useNavigate();
   const { user, isAuthenticated } = useContext(AuthContext);
   const { cart, addToCart, removeFromCart, clearCart, getTotalPrice } = useContext(CartContext);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -109,7 +110,7 @@ export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
         variant: "destructive",
       });
       onClose();
-      setLocation("/login");
+      navigate("/login");
       return;
     }
     
@@ -209,7 +210,7 @@ export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
                   variant="outline" 
                   onClick={() => {
                     onClose();
-                    setLocation('/marketplace');
+                    navigate('/marketplace');
                   }}
                   className="border-green-200 hover:bg-green-50"
                 >
@@ -558,7 +559,7 @@ export function CheckoutModal({ open, onClose }: CheckoutModalProps) {
                   className="flex items-center justify-center mx-auto border-green-200 hover:bg-green-50"
                   onClick={() => {
                     handleCompleteOrder();
-                    setLocation('/dashboard/orders');
+                    navigate('/dashboard/orders');
                   }}
                 >
                   <MapPin className="h-4 w-4 mr-2 text-green-600" />

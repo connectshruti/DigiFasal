@@ -1,19 +1,19 @@
 "use client"
-
+import React from 'react';
 import { useContext, useState } from "react";
-import { useLocation } from "wouter";
+import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { AuthContext } from "@/App";
+import { AuthContext } from "../App";
 import { Helmet } from "react-helmet";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Badge } from "@/components/ui/badge";
-import { ProductCard } from "@/components/ui/product-card";
-import { CheckoutModal } from "@/components/ui/checkout-modal";
-import { Product, Order, Service } from "@/types";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import { Button } from "../components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
+import { Skeleton } from "../components/ui/skeleton";
+import { Badge } from "../components/ui/badge";
+import { ProductCard } from "../components/ui/product-card";
+import { CheckoutModal } from "../components/ui/checkout-modal";
+import { Product, Order, Service } from "../types";
 import { 
   BarChart3, 
   Calendar, 
@@ -38,9 +38,9 @@ import {
 export default function Dashboard() {
   // State and context variables remain the same
   const { user, isAuthenticated } = useContext(AuthContext);
-  const [_, setLocation] = useLocation();
+const navigate = useNavigate();
   const [showCheckoutModal, setShowCheckoutModal] = useState(false);
-  
+  console.log(user)
   // Query hooks remain the same
   const { data: products, isLoading: isLoadingProducts } = useQuery<Product[]>({
     queryKey: ['/api/products/farmer/' + user?.id],
@@ -105,7 +105,7 @@ export default function Dashboard() {
   };
 
   if (!isAuthenticated) {
-    setLocation("/login");
+    navigate("/login");
     return null;
   }
 
@@ -142,7 +142,7 @@ export default function Dashboard() {
           {user?.role === 'buyer' && (
             <Button 
               className="bg-green-600 hover:bg-green-700 text-white shadow-sm"
-              onClick={() => setLocation('/marketplace')}
+              onClick={() => navigate('/marketplace')}
             >
               <ShoppingCart className="h-4 w-4 mr-2" />
               Browse Products

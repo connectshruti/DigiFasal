@@ -1,7 +1,8 @@
-import { TestimonialCard } from "@/components/ui/testimonial-card";
+import React from 'react';
+import { TestimonialCard } from "../ui/testimonial-card";
 import { useQuery } from "@tanstack/react-query";
-import { Testimonial, TestimonialWithUser, User } from "@/types";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Testimonial, TestimonialWithUser, User } from "../../types";
+import { Skeleton } from "../ui/skeleton";
 import { Leaf } from "lucide-react";
 
 export default function Testimonials() {

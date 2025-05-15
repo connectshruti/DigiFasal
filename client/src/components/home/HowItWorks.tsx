@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button";
+import React from 'react';
+import { Button } from "../ui/button";
 import { UserCheck, FileText, Handshake, Leaf } from "lucide-react";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 
 export default function HowItWorks() {
   return (
@@ -72,7 +73,7 @@ export default function HowItWorks() {
         </div>
         
         <div className="mt-16 text-center">
-          <Link href="/register">
+          <Link to="/register">
             <Button 
               size="lg"
               className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-medium shadow-md transition-all duration-200 hover:shadow-lg"

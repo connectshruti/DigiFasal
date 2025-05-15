@@ -1,14 +1,15 @@
+import React from 'react';
 import { useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useLocation } from "wouter";
 import { useMutation } from "@tanstack/react-query";
-import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "../hooks/use-toast";
+import { apiRequest } from "../lib/queryClient";
 import { Helmet } from "react-helmet";
 import { Tractor, ShoppingBasket, Wrench } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 import {
   Form,
   FormControl,
@@ -17,17 +18,17 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "../components/ui/form";
+import { Input } from "../components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+} from "../components/ui/select";
+import { Textarea } from "../components/ui/textarea";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 
 const registerSchema = z.object({
   username: z.string().min(3, "Username must be at least 3 characters."),
@@ -76,7 +77,7 @@ export default function Register() {
   const registerMutation = useMutation({
     mutationFn: async (data: Omit<RegisterFormValues, 'confirmPassword'>) => {
       const { confirmPassword, ...userData } = data;
-      const response = await apiRequest("POST", "/api/users/register", userData);
+      const response = await apiRequest("POST", `${import.meta.env.VITE_SERVER_PATH}/api/users/register`, userData);
       return response.json();
     },
     onSuccess: () => {

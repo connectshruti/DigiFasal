@@ -1,6 +1,7 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
+import React from 'react';
+import { Card, CardContent } from "./card";
+import { Button } from "./button";
+import { Link } from "react-router-dom";
 import { LucideIcon } from "lucide-react";
 
 interface RoleCardProps {
@@ -9,6 +10,10 @@ interface RoleCardProps {
   icon: LucideIcon;
   imageSrc: string;
   role: string;
+  iconClassName:string;
+  titleClassName:string;
+  descriptionClassName:string;
+  className?: string; // ✅ Add this
 }
 
 export function RoleCard({ title, description, icon: Icon, imageSrc, role }: RoleCardProps) {
@@ -29,7 +34,7 @@ export function RoleCard({ title, description, icon: Icon, imageSrc, role }: Rol
           <h3 className="text-xl font-medium text-[#1f2937]">{title}</h3>
         </div>
         <p className="text-[#6b7280] mb-6 leading-relaxed">{description}</p>
-        <Link href={`/register?role=${role}`}>
+        <Link to={`/register?role=${role}`}>
           <Button className="w-full bg-[#4a7c59] hover:bg-[#3a6a4a] text-white py-3 rounded-lg font-medium transition-all duration-200 hover:shadow-md">
             Register as {title.split(' ').pop()}
           </Button>

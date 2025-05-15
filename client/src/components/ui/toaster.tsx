@@ -1,4 +1,5 @@
-import { useToast } from "@/hooks/use-toast"
+import React from 'react';
+import { useToast } from "../../hooks/use-toast"
 import {
   Toast,
   ToastClose,
@@ -6,7 +7,7 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport,
-} from "@/components/ui/toast"
+} from "./toast.tsx"
 import { Leaf } from "lucide-react" // Optional nature icon
 
 export function Toaster() {

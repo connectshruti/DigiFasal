@@ -21,7 +21,7 @@ import {
   productCategoryEnum,
   serviceTypeEnum,
   orderStatusEnum
-} from "@shared/schema";
+} from "../shared/schema";
 import { db } from "./db";
 import { eq, like, and, or, desc, SQL, sql } from "drizzle-orm";
 

@@ -1,13 +1,15 @@
-import { Card, CardContent } from "@/components/ui/card";
+import React from 'react';
+import { Card, CardContent } from "./card";
 import { Star, ShoppingCart } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Product } from "@/types";
+import { Button } from "./button";
+import { Product } from "../../types";
 import { useContext } from "react";
-import { CartContext } from "@/App";
-import { Link } from "wouter";
+import { CartContext } from "../../App";
+import { Link } from "react-router-dom";
 
 interface ProductCardProps {
   product: Product;
+  className:string;
 }
 
 export function ProductCard({ product }: ProductCardProps) {
@@ -19,8 +21,8 @@ export function ProductCard({ product }: ProductCardProps) {
     addToCart(product, 1);
   };
   
-  return (
-    <Link href={`/product/${product.id}`}>
+  return (    
+    <Link to={`/product/${product.id}`}>
       <Card className="bg-white rounded-xl border border-[#f0f0f0] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden cursor-pointer">
         <div className="relative">
           <div className="h-52 overflow-hidden">

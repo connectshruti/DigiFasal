@@ -3,7 +3,7 @@
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
 import { Leaf, Sprout, Droplet, Sun } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn } from "../../lib/utils"
 
 // Nature-inspired themes
 const THEMES = { 

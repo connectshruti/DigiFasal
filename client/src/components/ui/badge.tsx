@@ -1,6 +1,6 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+import { cn } from "../../lib/utils"
 import { Leaf } from "lucide-react"
 
 const badgeVariants = cva(
@@ -42,17 +42,16 @@ const badgeVariants = cva(
 )
 
 export interface BadgeProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {
-  icon?: React.ReactNode
+extends React.HTMLAttributes<HTMLDivElement>,
+Omit<VariantProps<typeof badgeVariants>, "icon"> {
+icon?: React.ReactNode
 }
 
 function Badge({ className, variant, size, icon, children, ...props }: BadgeProps) {
-  return (
-    <div className={cn(badgeVariants({ variant, size, icon: !!icon }), className)} {...props}>
-      {variant === "nature" && (
-        <Leaf className="h-3 w-3 flex-shrink-0" />
-      )}
+   const hasIcon = Boolean(icon) || variant === "nature"
+   return (
+    <div className={cn(badgeVariants({ variant, size, icon: hasIcon }), className)} {...props}>
+      {variant === "nature" && <Leaf className="h-3 w-3 flex-shrink-0" />}
       {icon && variant !== "nature" && icon}
       {children}
     </div>

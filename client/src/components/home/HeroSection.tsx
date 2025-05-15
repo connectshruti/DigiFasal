@@ -1,5 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
+import React from 'react';
+import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
@@ -27,7 +28,7 @@ export default function HeroSection() {
             India's most trusted marketplace connecting organic farmers with conscious buyers.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link href="/register?role=farmer">
+            <Link to="/register?role=farmer">
               <Button 
                 size="lg"
                 className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-medium shadow-md transition-all duration-200 hover:shadow-lg border border-green-700/20"
@@ -35,7 +36,7 @@ export default function HeroSection() {
                 Start Selling
               </Button>
             </Link>
-            <Link href="/marketplace">
+            <Link to="/marketplace">
               <Button 
                 size="lg"
                 variant="outline"

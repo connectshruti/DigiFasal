@@ -1,10 +1,11 @@
+import React from 'react';
 import { useQuery } from "@tanstack/react-query";
 import { useParams, Link } from "wouter";
-import { Product, User } from "@/types";
+import { Product, User } from "../types";
 import { Helmet } from "react-helmet";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "../components/ui/button";
+import { Card, CardContent } from "../components/ui/card";
+import { Skeleton } from "../components/ui/skeleton";
 import {
   ArrowLeft,
   Truck,
@@ -21,12 +22,12 @@ import {
   Calendar,
   CheckCircle
 } from "lucide-react";
-import { apiRequest, queryClient } from "@/lib/queryClient";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { apiRequest, queryClient } from "../lib/queryClient";
+import { Badge } from "../components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { useContext, useState } from "react";
-import { CartContext } from "@/App";
-import { useToast } from "@/hooks/use-toast";
+import { CartContext } from "../App";
+import { useToast } from "../hooks/use-toast";
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();

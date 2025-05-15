@@ -1,5 +1,6 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import React from 'react';
+import { Card, CardContent } from "../ui/card";
+import { Button } from "../ui/button";
 import { LucideIcon } from "lucide-react";
 
 interface ServiceCardProps {
@@ -7,6 +8,9 @@ interface ServiceCardProps {
   description: string;
   icon: LucideIcon;
   buttonText: string;
+  className:string;
+  iconClassName:string;
+  buttonClassName:string;
   onClick: () => void;
 }
 
@@ -15,6 +19,7 @@ export function ServiceCard({
   description, 
   icon: Icon, 
   buttonText, 
+  className, iconClassName,buttonClassName,
   onClick 
 }: ServiceCardProps) {
   return (

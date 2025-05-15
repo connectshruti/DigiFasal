@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PORT = 8000;
+const PORT = process.env.PORT;
 const PACKAGE_PATH = path.join(__dirname, 'digi-fasal-project.tar.gz');
 const FILE_NAME = 'digi-fasal-project.tar.gz';
 
@@ -122,6 +122,6 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Download server running at http://localhost:${PORT}`);
-  console.log(`Download URL: http://localhost:${PORT}/download`);
+  console.log(`Download server running at ${process.env.SERVER_URL}${PORT}`);
+  console.log(`Download URL: ${process.env.SERVER_URL}${PORT}/download`);
 });

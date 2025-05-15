@@ -1,63 +1,18 @@
+import React from 'react';
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Service, User } from "@/types";
+import { Service, User } from "../types";
 import { Helmet } from "react-helmet";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../components/ui/card";
+import { Skeleton } from "../components/ui/skeleton";
+import { Badge } from "../components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { Filter, Search, X, Truck, Tractor, Brain, Info, MapPin, Calendar, Star } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-
-// import { useState } from "react";
-// import { useQuery } from "@tanstack/react-query";
-// import { Service, User } from "@/types";
-// import { Helmet } from "react-helmet";
-// import {
-//   Button,
-//   Input,
-//   Skeleton,
-//   Badge,
-//   Select,
-//   SelectContent,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue,
-//   Card,
-//   CardContent,
-//   CardDescription,
-//   CardFooter,
-//   CardHeader,
-//   CardTitle,
-//   Dialog,
-//   DialogContent,
-//   DialogDescription,
-//   DialogHeader,
-//   DialogTitle,
-//   DialogTrigger,
-//   Sheet,
-//   SheetContent,
-//   SheetHeader,
-//   SheetTitle,
-//   SheetTrigger,
-// } from "../components/ui";
-// import {
-//   Filter,
-//   Search,
-//   X,
-//   Truck,
-//   Tractor,
-//   Brain,
-//   Info,
-//   MapPin,
-//   Calendar,
-//   Star,
-// } from "lucide-react";
-// import { useToast } from "@/hooks/use-toast";
+import { useToast } from "../hooks/use-toast";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../components/ui/dialog";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../components/ui/sheet";
 
 export default function Services() {
   const [searchQuery, setSearchQuery] = useState("");

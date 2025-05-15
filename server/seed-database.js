@@ -30,7 +30,7 @@ async function seedDatabase() {
     
     try {
       // Check if server is running
-      await fetch('http://localhost:5000/api/products');
+      await fetch(`${process.env.SERVER_URL}/api/products`);
       console.log('Server is running. Proceeding with database seeding...\n');
     } catch (error) {
       console.error('Error: Server is not running. Please start the server with "npm run dev" first.');
@@ -39,7 +39,7 @@ async function seedDatabase() {
     
     console.log('Seeding database...');
     
-    const response = await fetch('http://localhost:5000/api/seed', {
+    const response = await fetch(`${process.env.SERVER_URL}/api/seed`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ async function seedDatabase() {
       console.log('- 1 transportation service');
       console.log('- 2 testimonials');
       
-      console.log('\nYou can now browse the application at http://localhost:5000');
+      console.log(`\nYou can now browse the application at ${process.env.SERVER_URL}`);
     } else {
       const errorData = await response.json();
       console.error('Error seeding database:', errorData.message);
@@ -64,7 +64,7 @@ async function seedDatabase() {
   } catch (error) {
     console.error('Error:', error.message);
     console.error('\nMake sure:');
-    console.error('1. The server is running at http://localhost:5000');
+    console.error(`1. The server is running at ${process.env.SERVER_URL}`);
     console.error('2. Your database connection is properly configured in .env');
     console.error('3. Database migrations have been applied with "npm run db:push"');
   }

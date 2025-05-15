@@ -1,9 +1,13 @@
-import { Card, CardContent } from "@/components/ui/card";
+import React from 'react';
+import { Card, CardContent } from "../ui/card";
 import { Star } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { TestimonialWithUser } from "@/types";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { TestimonialWithUser } from "../../types";
 
 interface TestimonialCardProps {
+  className:string;
+  avatarClassName:string;
+  ratingClassName:string;
   testimonial: TestimonialWithUser;
 }
 

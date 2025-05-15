@@ -1,11 +1,12 @@
-import HeroSection from "@/components/home/HeroSection";
-import RoleSelection from "@/components/home/RoleSelection";
-import FeaturedProducts from "@/components/home/FeaturedProducts";
-import ServicesSection from "@/components/home/ServicesSection";
-import MarketInsights from "@/components/home/MarketInsights";
-import HowItWorks from "@/components/home/HowItWorks";
-import Testimonials from "@/components/home/Testimonials";
-import DownloadApp from "@/components/home/DownloadApp";
+import React from 'react';
+import HeroSection from "../components/home/HeroSection";
+import RoleSelection from "../components/home/RoleSelection";
+import FeaturedProducts from "../components/home/FeaturedProducts";
+import ServicesSection from "../components/home/ServicesSection";
+import MarketInsights from "../components/home/MarketInsights";
+import HowItWorks from "../components/home/HowItWorks";
+import Testimonials from "../components/home/Testimonials";
+import DownloadApp from "../components/home/DownloadApp";
 import { Helmet } from "react-helmet";
 import { Leaf, Sprout, Wheat, Truck, BarChart, Smartphone } from "lucide-react";
 

@@ -1,21 +1,22 @@
-import { Switch, Route } from "wouter";
+import React from 'react';
+import { Routes, Route } from "react-router-dom";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
+import { Toaster } from "./components/ui/toaster";
+import { TooltipProvider } from "./components/ui/tooltip";
+import NotFound from "./pages/not-found";
 import { createContext, useState } from "react";
 import { User } from "./types";
-import Home from "@/pages/home";
-import Marketplace from "@/pages/marketplace";
-import ProductDetail from "@/pages/product-detail";
-import Register from "@/pages/register";
-import Login from "@/pages/login";
-import Dashboard from "@/pages/dashboard";
-import Services from "@/pages/services";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import MobileMenu from "@/components/layout/MobileMenu";
+import Home from "./pages/home";
+import Marketplace from "./pages/marketplace";
+import ProductDetail from "./pages/product-detail";
+import Register from "./pages/register";
+import Login from "./pages/login";
+import Dashboard from "./pages/dashboard";
+import Services from "./pages/services";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import MobileMenu from "./components/layout/MobileMenu";
 
 // Create Auth Context
 export const AuthContext = createContext<{
@@ -47,21 +48,33 @@ export const CartContext = createContext<{
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/marketplace" component={Marketplace} />
-      <Route path="/product/:id" component={ProductDetail} />
-      <Route path="/register" component={Register} />
-      <Route path="/login" component={Login} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/services" component={Services} />
-      <Route component={NotFound} />
-    </Switch>
+    <Routes>
+ <Route path="/" element={<Home />} />
+  <Route path="/marketplace" element={<Marketplace />} />
+  <Route path="/product/:id" element={<ProductDetail />} />
+  <Route path="/register" element={<Register />} />
+  <Route path="/login" element={<Login />} />
+  <Route path="/dashboard" element={<Dashboard />} />
+  <Route path="/services" element={<Services />} />
+  <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 
 function App() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+   // ✅ Sync user to localStorage when it changes
+   React.useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
+  }, [user]);
+
   const [cart, setCart] = useState<Array<{ product: any; quantity: number }>>([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

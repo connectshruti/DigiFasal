@@ -3,7 +3,7 @@
 import * as React from "react"
 import * as AvatarPrimitive from "@radix-ui/react-avatar"
 import { Leaf, User } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn } from "../../lib/utils"
 
 interface AvatarProps extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
   variant?: "default" | "nature" | "outline"

@@ -1,7 +1,7 @@
 import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { db } from "./db";
+import { storage } from "./utils/storage";
+import { db } from "./utils/db.ts";
 import { 
   insertUserSchema, 
   insertProductSchema,
@@ -14,7 +14,7 @@ import {
   orders,
   reviews,
   testimonials
-} from "@shared/schema";
+} from "./shared/schema";
 import { z } from "zod";
 
 // Helper function to handle errors

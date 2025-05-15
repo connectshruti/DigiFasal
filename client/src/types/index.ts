@@ -28,6 +28,7 @@ export interface Product {
   isPremium: boolean;
   rating?: string;
   createdAt: Date;
+  harvestDate:any;
 }
 
 export interface Service {
